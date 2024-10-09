@@ -78,9 +78,9 @@ In case one of the jobs has status "failed" please contact me because it won't r
 
 ```json
 {
-  "status": "processing" or "failed" or "succeeded",
+  "status": "processing" | "failed" | "succeeded",
   "original_file_name": "string",
-  "file_url": "string" or null,
+  "file_url": "string" | null,
   "removed_words": array of objects with word and start and end times.
 }
 ```
@@ -102,8 +102,8 @@ Retrieve all jobs for the authenticated user.
 ```json
 [
   {
-    "file_url": "string"  or null,
-    "status": "processing" or "failed" or "succeeded",
+    "file_url": "string"  | null,
+    "status": "processing" | "failed" | "succeeded",
     "task_id": "string",
     "original_file_name": "string",
     "removed_words": "array"
