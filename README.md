@@ -76,7 +76,7 @@ In case one of the jobs has status "failed" please contact me because it won't r
 
 **Response:**
 
-```json
+```ts
 {
   "status": "processing" | "failed" | "succeeded",
   "original_file_name": "string",
