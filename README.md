@@ -16,7 +16,7 @@ Clean and censor an .mp3 file. I would advise to wait for the response and savin
 
 **Request Body:**
 
-```json
+```ts
 {
   "audio_file_url": "string",
   "approx_censor_list": ["string"],
@@ -50,7 +50,7 @@ Clean and censor an .mp3 file. I would advise to wait for the response and savin
 
 **Response:**
 
-```json
+```ts
 {
   "message": "Job started",
   "task_id": "string",
@@ -99,7 +99,7 @@ Retrieve all jobs for the authenticated user.
 
 **Response:**
 
-```json
+```ts
 [
   {
     "file_url": "string"  | null,
