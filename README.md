@@ -36,15 +36,15 @@ Clean and censor an .mp3 file. I would advise to wait for the response and savin
 ```
 
 - `audio_file_url` (required): URL of the audio file to be cleaned.
-- `approx_censor_list` (optional): List of words to be approximately censored.
-- `exact_censor_list` (optional): List of words to be exactly censored.
+- `approx_censor_list` (optional if exact censor list is included and non-empty): List of words to be approximately censored.
+- `exact_censor_list` (optional if approx censor list is included and non-empty): List of words to be exactly censored.
 - `callback_url` (optional): URL to receive job status updates.
-- `language` (required): "en" only supports english for now.
+- `language` (required): "en".
 - `censor_method` (required): Method to use for censoring (currently supports "bleep" method).
-  - `method`: Censoring method ("bleep" or "mute").
+  - `method`: Censoring method ("bleep").
   - `freq`: Frequency of the bleep sound (range: 0-20000).
   - `vol`: Volume of the bleep sound (range: 0-1).
-- `offsets` (optional): Start and end offsets for processing.
+- `offsets` (optional): Start and end offsets for processing in percentages of word length.
   - `start`: Start offset (range: 0-1).
   - `end`: End offset (range: 0-1).
 
@@ -66,6 +66,8 @@ Retrieve the status of a specific job.
 
 **URL:** `/get-job`
 
+In case one of the jobs has status "failed" please contact me because it won't refund usage automaticallly as I would need to investigate why it failed first so the API isn't spammed.
+
 **Method:** `GET`
 
 **Query Parameters:**
@@ -76,10 +78,10 @@ Retrieve the status of a specific job.
 
 ```json
 {
-  "status": "string",
+  "status": "processing" or "failed" or "succeeded",
   "original_file_name": "string",
-  "file_url": "string",
-  "removed_words": "array"
+  "file_url": "string" or null,
+  "removed_words": array of objects with word and start and end times.
 }
 ```
 
@@ -100,8 +102,8 @@ Retrieve all jobs for the authenticated user.
 ```json
 [
   {
-    "file_url": "string",
-    "status": "string",
+    "file_url": "string"  or null,
+    "status": "processing" or "failed" or "succeeded",
     "task_id": "string",
     "original_file_name": "string",
     "removed_words": "array"
